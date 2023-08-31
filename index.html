@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Paseador de perros</title>
+    <link rel="stylesheet" href="Estilo.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Paseador de perros</h1>
+        <img src="https://img.freepik.com/vector-premium/perro-paseador-trabajo-semi-plano-color-vector-caracter_151150-11618.jpg"
+            width="400"
+            height="300"
+            title="Costos paseador de perros"/>
+        <form id="formulario-paseador-perros">
+            <div class="form-group">
+                <label for="horas">Horas de paseo:</label>
+                <input type="number" id="horas" min="1" required>
+            </div>
+            <div class="form-group">
+                <label for="perros-grandes">Perros grandes:</label>
+                <input type="number" id="perros-grandes" min="0" value="0" required>
+            </div>
+            <div class="form-group">
+                <label for="perros-medianos">Perros medianos:</label>
+                <input type="number" id="perros-medianos" min="0" value="0" required>
+            </div>
+            <div class="form-group">
+                <label for="perros-pequenos">Perros Chicos:</label>
+                <input type="number" id="perros-pequenos" min="0" value="0" required>
+            </div>
+            <button type="submit">Calcular costo</button>
+        </form>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        const formulario = document.getElementById("formulario-paseador-perros");
+        formulario.addEventListener("submit", function(evento) {
+            evento.preventDefault();
+            
+            const horas = document.getElementById("horas").valueAsNumber;
+            const perrosGrandes = document.getElementById("perros-grandes").valueAsNumber;
+            const perrosMedianos = document.getElementById("perros-medianos").valueAsNumber;
+            const perrosPequenos = document.getElementById("perros-pequenos").valueAsNumber;
+
+            let costo = (perrosGrandes * 10000 + perrosMedianos * 5000 + perrosPequenos * 3000) * horas;
+
+            if (perrosGrandes + perrosMedianos + perrosPequenos > 1) {
+                costo *= 0.9; // Descuento del 10%
+            }
+
+            result.textContent = "Costo total a pagar: $" + costo;
+        });
+    </script>
+</body>
+</html>
+
+
